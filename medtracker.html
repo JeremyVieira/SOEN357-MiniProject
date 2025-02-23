@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MedTracker Prototype</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.29.0/feather.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        body {
+            background: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .phone-frame {
+            width: 375px;
+            height: 700px;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .status-bar {
+            background: white;
+            padding: 16px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .screen {
+            display: none;
+            height: calc(100% - 120px);
+            overflow-y: auto;
+            padding: 16px;
+        }
+
+        .screen.active {
+            display: block;
+        }
+
+        .nav-bar {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background: white;
+            padding: 16px;
+            border-top: 1px solid #eee;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 16px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .med-item {
+            background: #f0f7ff;
+            border-radius: 8px;
+            padding: 12px;
+            margin: 8px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .button {
+            background: #2563eb;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            background: #1d4ed8;
+        }
+
+        .nav-button {
+            color: #666;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        .nav-button.active {
+            color: #2563eb;
+        }
+
+        .title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .notification-badge {
+            background: red;
+            color: white;
+            border-radius: 50%;
+            padding: 2px 6px;
+            font-size: 12px;
+            position: absolute;
+            top: -5px;
+            right: -5px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #eee;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            width: 80%;
+            height: 100%;
+            background: #22c55e;
+        }
+    </style>
+</head>
+
+<body>
+    <button onclick="window.location.href='index.html'"
+        style="position: absolute; top: 20px; left: 20px; padding: 10px 20px; background: #2563eb; color: white; border: none; border-radius: 5px; cursor: pointer;">
+        Return to Home
+    </button>
+    <div class="phone-frame">
+        <div class="status-bar">
+            <div class="title">MedTracker</div>
+            <button class="nav-button" style="position: relative;">
+                <i data-feather="bell"></i>
+                <span class="notification-badge">2</span>
+            </button>
+        </div>
+
+        <!-- Home Screen -->
+        <div class="screen active" id="home-screen">
+            <div class="card">
+                <div class="title">Today's Medications</div>
+                <div class="med-item">
+                    <div>
+                        <div style="font-weight: 500;">Metformin</div>
+                        <div style="font-size: 0.875rem; color: #666;">2:00 PM - With Food</div>
+                    </div>
+                    <button class="button">Take</button>
+                </div>
+                <div class="med-item">
+                    <div>
+                        <div style="font-weight: 500;">Lisinopril</div>
+                        <div style="font-size: 0.875rem; color: #666;">8:00 PM</div>
+                    </div>
+                    <button class="button" style="background: #666;">Later</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="title">Upcoming Appointments</div>
+                <div style="padding: 12px; border: 1px solid #eee; border-radius: 8px;">
+                    <div style="font-weight: 500;">Dr. Smith - Endocrinologist</div>
+                    <div style="font-size: 0.875rem; color: #666;">Tomorrow - 10:00 AM</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="title">Medication Adherence</div>
+                <div class="progress-bar">
+                    <div class="progress-bar-fill"></div>
+                </div>
+                <div style="font-size: 0.875rem; color: #666; margin-top: 8px;">80% adherence this week</div>
+            </div>
+        </div>
+
+        <!-- Medications Screen -->
+        <div class="screen" id="medications-screen">
+            <div class="card">
+                <div class="title">My Medications</div>
+                <div class="med-item">
+                    <div>
+                        <div style="font-weight: 500;">Metformin</div>
+                        <div style="font-size: 0.875rem; color: #666;">500mg - Twice Daily</div>
+                        <div style="font-size: 0.875rem; color: #666;">7 days remaining</div>
+                    </div>
+                </div>
+                <div class="med-item">
+                    <div>
+                        <div style="font-weight: 500;">Lisinopril</div>
+                        <div style="font-size: 0.875rem; color: #666;">10mg - Once Daily</div>
+                        <div style="font-size: 0.875rem; color: #666;">15 days remaining</div>
+                    </div>
+                </div>
+                <button class="button" style="width: 100%; margin-top: 16px;">Add New Medication</button>
+            </div>
+        </div>
+
+        <!-- Appointments Screen -->
+        <div class="screen" id="appointments-screen">
+            <div class="card">
+                <div class="title">Upcoming Appointments</div>
+                <div style="padding: 12px; border: 1px solid #eee; border-radius: 8px; margin-bottom: 12px;">
+                    <div style="font-weight: 500;">Dr. Smith - Endocrinologist</div>
+                    <div style="font-size: 0.875rem; color: #666;">Tomorrow - 10:00 AM</div>
+                    <div style="font-size: 0.875rem; color: #666;">123 Medical Center</div>
+                </div>
+                <div style="padding: 12px; border: 1px solid #eee; border-radius: 8px;">
+                    <div style="font-weight: 500;">Dr. Johnson - Primary Care</div>
+                    <div style="font-size: 0.875rem; color: #666;">March 15 - 2:30 PM</div>
+                    <div style="font-size: 0.875rem; color: #666;">456 Health Clinic</div>
+                </div>
+                <button class="button" style="width: 100%; margin-top: 16px;">Schedule New Appointment</button>
+            </div>
+        </div>
+
+        <!-- Profile Screen -->
+        <div class="screen" id="profile-screen">
+            <div class="card">
+                <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 24px;">
+                    <div
+                        style="width: 64px; height: 64px; background: #eee; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                        <i data-feather="user" style="width: 32px; height: 32px;"></i>
+                    </div>
+                    <div>
+                        <div style="font-weight: 500;">Margaret Thompson</div>
+                        <div style="font-size: 0.875rem; color: #666;">margaret.t@email.com</div>
+                    </div>
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 8px;">
+                    <button class="button"
+                        style="text-align: left; background: white; color: #333; border: 1px solid #eee;">
+                        <i data-feather="settings" style="vertical-align: middle; margin-right: 8px;"></i>
+                        Settings
+                    </button>
+                    <button class="button"
+                        style="text-align: left; background: white; color: #333; border: 1px solid #eee;">
+                        <i data-feather="bell" style="vertical-align: middle; margin-right: 8px;"></i>
+                        Notifications
+                    </button>
+                    <button class="button"
+                        style="text-align: left; background: white; color: #333; border: 1px solid #eee;">
+                        <i data-feather="users" style="vertical-align: middle; margin-right: 8px;"></i>
+                        Family Access
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation Bar -->
+        <div class="nav-bar">
+            <button class="nav-button active" onclick="switchScreen('home')">
+                <i data-feather="home"></i>
+            </button>
+            <button class="nav-button" onclick="switchScreen('medications')">
+                <i data-feather="plus-circle"></i>
+            </button>
+            <button class="nav-button" onclick="switchScreen('appointments')">
+                <i data-feather="calendar"></i>
+            </button>
+            <button class="nav-button" onclick="switchScreen('profile')">
+                <i data-feather="user"></i>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Initialize Feather Icons
+        feather.replace();
+
+        // Screen switching functionality
+        function switchScreen(screenId) {
+            // Hide all screens
+            document.querySelectorAll('.screen').forEach(screen => {
+                screen.classList.remove('active');
+            });
+
+            // Show selected screen
+            document.getElementById(screenId + '-screen').classList.add('active');
+
+            // Update navigation buttons
+            document.querySelectorAll('.nav-button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.currentTarget.classList.add('active');
+
+            // Update screen title
+            const titles = {
+                'home': 'MedTracker',
+                'medications': 'Medications',
+                'appointments': 'Appointments',
+                'profile': 'Profile'
+            };
+            document.querySelector('.title').textContent = titles[screenId];
+
+            // Refresh Feather Icons
+            feather.replace();
+        }
+    </script>
+</body>
+
+</html>

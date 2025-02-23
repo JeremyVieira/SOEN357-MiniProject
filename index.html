@@ -1,0 +1,546 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MedTracker: UX Design Project Report</title>
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f4f9;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+        }
+
+        .header h1 {
+            font-size: 2.8rem;
+            color: #4A90E2;
+            margin-bottom: 1rem;
+        }
+
+        .author,
+        .student-id {
+            color: #777;
+            margin-bottom: 0.5rem;
+        }
+
+        .prototype-link {
+            display: inline-block;
+            padding: 0.7rem 1.5rem;
+            background: #4A90E2;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: background 0.3s;
+            box-shadow: 0 4px 10px rgba(74, 144, 226, 0.3);
+        }
+
+        .prototype-link:hover {
+            background: #357ABD;
+        }
+
+        /* Table of Contents */
+        .table-of-contents {
+            padding: 1.5rem;
+            border: 1px solid #e0e0e0;
+            background: #fafafa;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            margin-bottom: 2rem;
+        }
+
+        .table-of-contents h2 {
+            color: #4A90E2;
+            margin-bottom: 1rem;
+        }
+
+        .table-of-contents ul {
+            list-style-type: none;
+        }
+
+        .table-of-contents a {
+            color: #4A90E2;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .table-of-contents a:hover {
+            color: #357ABD;
+        }
+
+        /* Headings */
+        h2 {
+            font-size: 2.2rem;
+            margin: 2rem 0 1rem;
+            color: #4A90E2;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 0.5rem;
+        }
+
+        h3 {
+            font-size: 1.8rem;
+            color: #357ABD;
+            margin-top: 1.5rem;
+        }
+
+        h4 {
+            font-size: 1.4rem;
+            color: #333;
+            margin-top: 1.2rem;
+        }
+
+        h5 {
+            font-size: 1.2rem;
+            color: #666;
+        }
+
+        /* Typography */
+        p {
+            margin-bottom: 1rem;
+            text-align: justify;
+            color: #555;
+            line-height: 1.7;
+        }
+
+        ul,
+        ol {
+            margin: 1rem 0;
+            padding-left: 1.5rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        blockquote {
+            margin: 1.5rem 0;
+            padding: 1rem;
+            background: #f9f9f9;
+            border-left: 5px solid #4A90E2;
+            font-style: italic;
+            color: #555;
+        }
+
+        /* Wireframes */
+        .wireframes {
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .wireframes img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            margin: 1rem 0;
+            transition: transform 0.3s;
+        }
+
+        .wireframes img:hover {
+            transform: scale(1.03);
+        }
+
+        /* Journey Map */
+        .journey-map-container {
+            width: 100%;
+            overflow-x: auto;
+            margin: 2rem 0;
+            padding: 1rem 0;
+            background: #fafafa;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .journey-map-scroll {
+            min-width: min-content;
+            padding: 0 1rem;
+        }
+
+        .journey-map-container img {
+            max-width: none;
+            height: auto;
+            display: block;
+        }
+
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .prototype-link {
+                font-size: 0.9rem;
+                padding: 0.5rem 1rem;
+            }
+
+            .table-of-contents {
+                padding: 1rem;
+            }
+
+            h2 {
+                font-size: 1.8rem;
+            }
+
+            h3 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>MedTracker: UX Design Project Report</h1>
+            <div class="author">By Jeremy Vieira</div>
+            <div class="student-id">40246737</div>
+            <a href="medtracker.html" class="prototype-link">View Interactive Prototype</a>
+        </div>
+
+        <div class="table-of-contents">
+            <h2>Contents</h2>
+            <ul>
+                <li><a href="#user-research">1. User Research and Persona Creation</a></li>
+                <li><a href="#journey-mapping">2. User Journey Mapping</a></li>
+                <li><a href="#wireframe">3. Wireframe and Prototype Designing</a></li>
+                <li><a href="#usability">4. Usability Testing Plan</a></li>
+                <li><a href="#reflection">5. Reflection</a></li>
+            </ul>
+        </div>
+
+        <section id="user-research">
+            <h2>1. User Research and Persona Creation</h2>
+            <h3>User Research</h3>
+            <p>The user research involved secondary research using existing studies on medication management and health
+                technology adoption. This approach was chosen to understand users' needs, challenges, and behaviors
+                without direct user interactions, allowing insights to be gathered efficiently. The research focused on:
+            </p>
+            <ul>
+                <li>Medication management challenges</li>
+                <li>Appointment tracking methods</li>
+                <li>Communication barriers with healthcare providers</li>
+                <li>Technology comfort levels</li>
+            </ul>
+
+            <p>To answer these questions, I will be using the following sources:</p>
+            <ul>
+                <li>Smith, J., et al. (2023). "Medication Adherence in Elderly Patients with Chronic Conditions."
+                    Journal of Healthcare Technology. This study was chosen for its focus on challenges elderly patients
+                    face with medication adherence, providing insights into reminders and tracking needs.</li>
+                <li>Chen, L., & Washington, K. (2023). "Mobile Health Interventions for Medication Management."
+                    Digital Health Quarterly. Selected for its exploration of mobile interventions, guiding app feature
+                    integration and user engagement strategies.</li>
+                <li>Pew Research Center (2023). "Tech Adoption Among Older Adults." This report was included to
+                    understand technology comfort levels among older adults, ensuring the app's usability for a key
+                    demographic.</li>
+            </ul>
+
+            <h3>Personas</h3>
+            <h4>James</h4>
+            <h5>Demographics</h5>
+            <ul>
+                <li>Age: 34</li>
+                <li>Occupation: Software Developer</li>
+                <li>Location: Urban area</li>
+                <li>Living Situation: Lives with partner, no children</li>
+            </ul>
+            <h5>Medical Profile</h5>
+            <ul>
+                <li>Conditions: Chron's Disease, Anxiety</li>
+                <li>Medications: 3 different prescriptions, varying schedules</li>
+                <li>Regular appointments: Gastroenterologist, Psychiatrist, Nutritionist</li>
+            </ul>
+            <h5>Goals</h5>
+            <ul>
+                <li>Streamline health management workflow</li>
+                <li>Integrate health data across platforms</li>
+                <li>Maintain medication schedule despite busy workdays</li>
+                <li>Track symptoms alongside medication compliance</li>
+                <li>Share relevant health data with healthcare team</li>
+            </ul>
+            <h5>Pain Points</h5>
+            <ul>
+                <li>Forgets medication during intense work periods</li>
+                <li>Struggles with medication timing around meals</li>
+                <li>Finds it difficult to coordinate between multiple specialists</li>
+                <li>Gets frustrated with manual data entry</li>
+                <li>Needs reminders that don't disrupt meetings</li>
+            </ul>
+            <h5>Motivations</h5>
+            <ul>
+                <li>Wants to optimize health management</li>
+                <li>Seeks to minimize disease flare-ups</li>
+                <li>Aims to reduce time spent on health admin</li>
+                <li>Values data-driven health decisions</li>
+                <li>Interested in understanding treatment patterns</li>
+            </ul>
+            <h5>Behaviors</h5>
+            <ul>
+                <li>Works irregular hours</li>
+                <li>Frequently travels for work</li>
+                <li>Prefers automated solutions</li>
+                <li>Research-oriented approach to health</li>
+                <li>Active in online health communities</li>
+            </ul>
+            <h5>Quote</h5>
+            <blockquote>
+                "I need a system that works as efficiently as I do - something that can keep up with my schedule while
+                helping me stay on top of my health."
+            </blockquote>
+
+            <h4>Margaret</h4>
+            <h5>Demographics</h5>
+            <ul>
+                <li>Age: 62</li>
+                <li>Occupation: Retired Teacher</li>
+                <li>Location: Suburban area</li>
+                <li>Living Situation: Lives alone, children nearby</li>
+            </ul>
+            <h5>Medical Profile</h5>
+            <ul>
+                <li>Conditions: Type 2 Diabetes, Hypertension, Arthritis</li>
+                <li>Medications: 5 different prescriptions</li>
+                <li>Regular appointments: Endocrinologist, Primary Care, Rheumatologist</li>
+            </ul>
+            <h5>Technology Profile</h5>
+            <ul>
+                <li>Smartphone: iPhone user (3 years)</li>
+                <li>Tech Comfort: Moderate</li>
+                <li>Current Tools: Paper calendar, pill organizer</li>
+            </ul>
+            <h5>Goals</h5>
+            <ul>
+                <li>Stay independent in managing health</li>
+                <li>Reduce stress around medication schedules</li>
+                <li>Maintain clear communication with doctors</li>
+                <li>Avoid medication errors</li>
+                <li>Keep family informed of health status</li>
+            </ul>
+            <h5>Pain Points</h5>
+            <ul>
+                <li>Frequently forgets evening medications</li>
+                <li>Struggles to coordinate between multiple doctors</li>
+                <li>Has difficulty tracking medication refills</li>
+                <li>Sometimes misses appointments due to calendar confusion</li>
+                <li>Worried about medication interactions</li>
+            </ul>
+            <h5>Motivations</h5>
+            <ul>
+                <li>Wants to maintain independence</li>
+                <li>Desires to reduce burden on family</li>
+                <li>Aims to improve health outcomes</li>
+                <li>Seeks peace of mind regarding medication management</li>
+            </ul>
+            <h5>Behaviors</h5>
+            <ul>
+                <li>Morning person, most active early in day</li>
+                <li>Prefers simple, clear instructions</li>
+                <li>Relies on routine</li>
+                <li>Values personal connection with healthcare providers</li>
+                <li>Regularly communicates with family about health</li>
+            </ul>
+            <h5>Quote</h5>
+            <blockquote>
+                "I want to stay on top of my health but keeping track of everything can be overwhelming sometimes."
+            </blockquote>
+
+        </section>
+
+        <section id="journey-mapping">
+            <h2>2. User Journey Mapping</h2>
+            <div class="journey-map-container">
+                <div class="journey-map-scroll">
+                    <div class="mermaid">
+                        journey
+                        title MedTracker App: User Journey Comparison
+                        section Morning Routine
+                        Wake up & check app: 4: Margaret, James
+                        Review daily schedule: 3: Margaret, James
+                        Take morning medication: 5: Margaret
+                        Quick medication check between meetings: 3: James
+                        section Mid-Day Management
+                        Medication reminder notification: 4: Margaret, James
+                        Log symptoms: 3: James
+                        Schedule doctor appointment: 2: Margaret
+                        Coordinate with multiple specialists: 1: James
+                        Check medication supply: 4: Margaret
+                        section Afternoon Activities
+                        Receive reminder during meeting: 2: James
+                        Take afternoon medication: 4: Margaret
+                        Share health update with family: 5: Margaret
+                        Export health data for doctor: 4: James
+                        section Evening Wrap-up
+                        Evening medication alert: 4: Margaret, James
+                        Review next day's schedule: 3: Margaret
+                        Analyze weekly health trends: 5: James
+                        Update medication log: 4: Margaret, James
+                        section Weekly Tasks
+                        Refill medications: 3: Margaret, James
+                        Review adherence stats: 4: James
+                        Share progress with doctor: 5: Margaret
+                        Plan upcoming appointments: 3: Margaret, James
+                    </div>
+                </div>
+            </div>
+            <div class="journey-map-container">
+                <img src="media/image2.png" alt="User Emotional Map">
+            </div>
+        </section>
+
+        <section id="wireframe">
+            <h2>3. Wireframe and Prototype Designing</h2>
+            <h3>Wireframe</h3>
+            <div class="wireframes">
+                <img src="media/image3.png" alt="Wireframe 1">
+                <img src="media/image4.png" alt="Wireframe 2">
+                <img src="media/image5.png" alt="Wireframe 3">
+                <img src="media/image6.png" alt="Wireframe 4">
+            </div>
+        </section>
+
+        <section id="usability">
+            <h2>4. Usability Testing Plan</h2>
+            <h3>Test Objectives:</h3>
+            <ul>
+                <li>Evaluate navigation efficiency</li>
+                <li>Assess medication input process</li>
+                <li>Verify reminder functionality clarity</li>
+                <li>Test appointment scheduling workflow</li>
+                <li>Evaluate health summary comprehension</li>
+            </ul>
+            <h3>Participant Criteria:</h3>
+            <ul>
+                <li>8-10 participants aged 25-75</li>
+                <li>Mix of technology comfort levels</li>
+                <li>Currently managing multiple medications</li>
+                <li>Various chronic conditions represented</li>
+            </ul>
+            <h3>Test Tasks:</h3>
+            <ul>
+                <li>Add a new medication with custom schedule</li>
+                <li>Set up appointment reminders</li>
+                <li>Navigate between key screens</li>
+                <li>Share health summary with family member</li>
+            </ul>
+            <h3>Data Collection Methods:</h3>
+            <ul>
+                <li>Think-aloud protocol</li>
+                <li>Task completion rates</li>
+                <li>Time on task</li>
+                <li>Error rates</li>
+                <li>Post-test questionnaire</li>
+                <li>Recording of sessions (with permission)</li>
+            </ul>
+        </section>
+
+        <section id="reflection">
+            <h2>5. Reflection</h2>
+            <blockquote>
+                The UX design process for the MedTracker app has been instrumental in creating a solution that genuinely
+                addresses user needs while highlighting the complexities of designing for diverse user groups. Through
+                systematic research, persona development, journey mapping, and usability testing planning, I gained
+                valuable
+                insights into the challenges of medication management and healthcare coordination.
+            </blockquote>
+            <p>
+                The secondary research approach proved particularly effective in understanding the broad spectrum of
+                user needs.
+                By analyzing studies like Smith et al. (2023) and the Pew Research Center's report on tech adoption
+                among older
+                adults, I identified critical patterns in medication adherence challenges and technology comfort levels.
+                This
+                research-driven approach led to the development of two distinct personas - James and Margaret - who
+                represent
+                different ends of the user spectrum, from tech-savvy professionals to retired individuals with moderate
+                technology comfort.
+            </p>
+            <p>
+                The creation of these personas helped with:
+            </p>
+            <ul>
+                <li>Highlighting the need for flexible reminder systems that work for both busy professionals and
+                    retirees</li>
+                <li>Identifying the importance of family access features for older users</li>
+                <li>Understanding the varying complexity levels needed in the interface</li>
+                <li>Recognizing the need for different data sharing capabilities based on user comfort</li>
+            </ul>
+            <h3>Challenges and Solutions</h3>
+            <p>Several significant challenges emerged during the design process:</p>
+            <h4>1. Balancing Complexity vs. Simplicity</h4>
+            <p>
+                <strong>Challenge:</strong> Creating an interface that served both tech-savvy users like James, who
+                wanted advanced features, and users like Margaret, who preferred simplicity.
+            </p>
+            <p>
+                <strong>Solution:</strong> Implemented a sleek minimalist design that feels complete and offers all
+                information a user may need without it being overwhelming.
+            </p>
+            <h4>2. Medication Schedule Complexity</h4>
+            <p>
+                <strong>Challenge:</strong> Accommodating various medication schedules, from simple daily doses to
+                complex regimens with multiple conditions.
+            </p>
+            <p>
+                <strong>Solution:</strong> Developed a flexible scheduling system that can handle both basic and
+                advanced timing requirements while maintaining a clear visual presentation.
+            </p>
+            <h4>3. Healthcare Provider Integration</h4>
+            <p>
+                <strong>Challenge:</strong> Creating a system that could facilitate communication between patients and
+                multiple healthcare providers.
+            </p>
+            <p>
+                <strong>Solution:</strong> Implemented a structured health summary feature that can be easily shared
+                with healthcare providers while maintaining user privacy.
+            </p>
+            <h4>4. Accessibility Considerations</h4>
+            <p>
+                <strong>Challenge:</strong> Ensuring the app was usable for older adults while maintaining its appeal to
+                younger users.
+            </p>
+            <p>
+                <strong>Solution:</strong> Focused on clear typography, high contrast ratios, and intuitive navigation
+                patterns that work well for all age groups.
+            </p>
+            <p>
+                This project has reinforced the importance of:
+            </p>
+            <ul>
+                <li>Thorough user research in informing design decisions</li>
+                <li>Creating inclusive designs that work for users with varying technical abilities</li>
+                <li>Balancing feature richness with usability</li>
+                <li>Incorporating feedback mechanisms throughout the design process</li>
+            </ul>
+        </section>
+    </div>
+</body>
+
+</html>
